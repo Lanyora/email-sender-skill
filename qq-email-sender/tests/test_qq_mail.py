@@ -165,8 +165,11 @@ class QQMailTests(unittest.TestCase):
             self.assertEqual(code, 0)
             text = output.getvalue()
             self.assertIn("FEEDBACK", text)
+            self.assertIn("NEXT", text)
+            self.assertIn("1. 先预览反馈邮件", text)
             self.assertIn("author@example.com", text)
             self.assertIn("--feedback", text)
+            self.assertIn("维护者会看到发件地址", text)
 
     def test_address_parsing(self):
         items = qm.parse_addresses(

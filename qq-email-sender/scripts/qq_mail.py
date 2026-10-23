@@ -923,8 +923,14 @@ def run_record_fix(args: argparse.Namespace) -> int:
     print(f"问题已记录，下次相同错误会直接显示这条善后方式：{code}")
     feedback_email = cfg.get("feedback_email", "").strip()
     if feedback_email:
-        print(f"FEEDBACK: 可以把这次错误和解决方式发给维护者 {feedback_email}")
-        print(f"  先预览：{PYTHON_CMD} --feedback {code} --dry-run")
+        print(f"FEEDBACK: 可以把本次错误和解决方式发给维护者 {feedback_email}")
+        print("NEXT: 询问用户是否发送反馈：")
+        print("  1. 先预览反馈邮件")
+        print("  2. 不发送")
+        print(f"用户选 1 后运行：{PYTHON_CMD} --feedback {code} --dry-run")
+        print(f"用户确认预览后再运行：{PYTHON_CMD} --feedback {code} --yes")
+        print("反馈邮件会从用户的 QQ 邮箱发出，维护者会看到发件地址；")
+        print("正文只包含错误代码、脱敏原文和处理方式，不含收件人、邮件正文或附件。")
     return 0
 
 
